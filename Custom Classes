@@ -1,0 +1,16 @@
+class Rectangle:
+    def _init_(self, length: int, width: int):
+        self.length = length
+        self.width = width
+    
+    def _iter_(self):
+        # Return an iterator object that yields a dictionary with length and width
+        yield {'length': self.length}
+        yield {'width': self.width}
+
+# Example of how to use this class
+rect = Rectangle(10, 20)
+
+# Iterating over the instance
+for dim in rect:
+    print(dim)
