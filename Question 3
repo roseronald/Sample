@@ -1,1 +1,13 @@
+from django.db import transaction
+from django.dispatch import Signal, receiver
+from myapp.models import MyModel
 
+# Define a custom signal
+my_signal = Signal()
+
+# Define a receiver function
+@receiver(my_signal)
+def my_receiver(sender, **kwargs):
+    print("Receiver modifying database...")
+    MyModel.objects.create(name="From Signal")
+    print("Receiver done with database")
