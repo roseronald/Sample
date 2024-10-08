@@ -1,0 +1,26 @@
+import time
+from django.dispatch import Signal, receiver
+
+# Define a custom signal
+my_signal = Signal()
+
+# Define a receiver function
+@receiver(my_signal)
+def my_receiver(sender, **kwargs):
+    print("Receiver started...")
+    time.sleep(5)  # Simulate a long task
+    print("Receiver finished...")
+
+# Simulating sending the signal
+def send_signal():
+    print("Sending signal...")
+    my_signal.send(sender=None)
+    print("Signal sent.")
+
+# Call the send_signal function
+if __name__ == "__main__":
+    start_time = time.time()
+    send_signal()
+    end_time = time.time()
+
+    print(f"Total execution time: {end_time - start_time} seconds")
